@@ -7,7 +7,6 @@ library(readxl)
 library(ggplot2)
 library(ggmap)
 library(osmdata)
-library(plyr)
 
 #list files
 a = list.files('fermentation data/',full = T)
@@ -64,8 +63,8 @@ gghisto = ggplot(data = fermdd, aes(x = fermdd$`Volume [L]`)) + geom_histogram()
 gghisto
 #plotting line graph
 
-ggline = ggplot(data = fermdd, aes(x = fermdd$`Time [h]`, y = fermdd$`Lignin [g/l]`,color = concentration)) + geom_line() +
-  scale_colour_gradientn(colours = terrain.colors(10)) +
+ggline = ggplot(data = fermdd, aes(x = fermdd$`Time [h]`, y = fermdd$`Lignin [g/l]`,color = concentration)) 
+  + geom_line() +scale_colour_gradientn(colours = terrain.colors(10)) +
   facet_grid(fermdd$concentration~.) + xlab("Time [h]") + 
   ylab("Lignin [g/L]") + ggtitle("Lignin consumption in E. coli") +
   theme_dark()
@@ -81,7 +80,7 @@ potsdam$lon[1] = 13.0
 
 GER = c(left = 6, bottom = 48, right = 15, top = 54) 
 map1 = get_stamenmap(bbox = GER, zoom = 7, 
-                     maptype = "terrain") %>% ggmap() + geom_point(data = potsdam,aes(x = lon, y = lat))
+maptype = "terrain") %>% ggmap() + geom_point(data = potsdam,aes(x = lon, y = lat))
 map1
       
 ggsave("potsdam.tiff")
