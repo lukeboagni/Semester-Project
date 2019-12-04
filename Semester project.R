@@ -61,7 +61,7 @@ sum_sub = sub1 %>% group_by(concentration) %>% summarize(mean = mean(sub1$`Ligni
   
 gghisto = ggplot(data = fermdd, aes(x = fermdd$`Volume [L]`)) + geom_histogram() + 
   xlab("Volume [L]") + ylab("Distribution")
-  
+gghisto
 #plotting line graph
 
 ggline = ggplot(data = fermdd, aes(x = fermdd$`Time [h]`, y = fermdd$`Lignin [g/l]`,color = concentration)) + geom_line() +
@@ -69,6 +69,7 @@ ggline = ggplot(data = fermdd, aes(x = fermdd$`Time [h]`, y = fermdd$`Lignin [g/
   facet_grid(fermdd$concentration~.) + xlab("Time [h]") + 
   ylab("Lignin [g/L]") + ggtitle("Lignin consumption in E. coli") +
   theme_dark()
+ggline
 
 #ggmap
 potsdam = NA
